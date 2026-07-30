@@ -108,6 +108,7 @@ class MotionLib():
         return self._kin_char_model.get_num_joints()
 
     def _extract_frame_data(self, frame):
+        # print(frame)
         root_pos, root_rot, joint_dof = extract_pose_data(frame)
         root_pos = torch.tensor(root_pos, dtype=torch.float32, device=self._device)
         root_rot = torch.tensor(root_rot, dtype=torch.float32, device=self._device)
