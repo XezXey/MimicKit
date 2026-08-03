@@ -171,8 +171,12 @@ def convert_smpl_to_mimickit(input_file: str,
     # Clip frames
     if end_frame == -1:
         end_frame = frames.shape[0]
+    elif end_frame > frames.shape[0]:
+        end_frame = frames.shape[0]
+        print(f"⚠️  Warning: end_frame {end_frame} exceeds total frames {frames.shape[0]}. Using end_frame = {frames.shape[0]} instead.")
+
     assert 0 <= start_frame < end_frame <= frames.shape[0], \
-        f"Invalid frame range: [{start_frame}, {end_frame}] for {frames.shape[0]} frames"
+        f"❌ Invalid frame range: [{start_frame}, {end_frame}] for {frames.shape[0]} frames"
     frames = frames[start_frame:end_frame, :]
     
     # Set output fps
